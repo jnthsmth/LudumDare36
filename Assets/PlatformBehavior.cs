@@ -10,7 +10,6 @@ public class PlatformBehavior : MonoBehaviour {
 	public Vector3 start;
 	public Vector3 end;
 	private Vector3 direction;
-	private float distance;
 
 	void Awake() {
 		rig = GetComponent<Rigidbody> ();
@@ -20,7 +19,6 @@ public class PlatformBehavior : MonoBehaviour {
 	void Start () {
 		start = rig.position;
 		direction = (end - start);
-		distance = direction.magnitude;
 		direction.Normalize();
 		rig.isKinematic = true;
 	}
@@ -38,6 +36,7 @@ public class PlatformBehavior : MonoBehaviour {
 
 	void FixedUpdate() {
 		//rig.position += rig.velocity * Time.deltaTime;
+
 	}
 
 	private void move() {
@@ -46,6 +45,7 @@ public class PlatformBehavior : MonoBehaviour {
 	}
 
 	private void checkDirection() {
+		float distance = (end - start).magnitude;
 		if(((rig.position-start).magnitude > distance && speed > 0) || ((rig.position-end).magnitude > distance && speed < 0)) {
 			speed *= -1f;
 		}

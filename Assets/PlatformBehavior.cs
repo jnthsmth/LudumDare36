@@ -6,7 +6,7 @@ public class PlatformBehavior : MonoBehaviour {
 
 	private Rigidbody rig;
 	public bool activated = false;
-	public float speed = 10f;
+	public float speed = 2f;
 	public Vector3 start;
 	public Vector3 end;
 	private Vector3 direction;
@@ -31,6 +31,10 @@ public class PlatformBehavior : MonoBehaviour {
 		} else {
 			rig.velocity = new Vector3(0f, 0f);
 		}
+	}
+
+	void FixedUpdate() {
+		rig.position += rig.velocity * Time.deltaTime;
 	}
 
 	private void move() {

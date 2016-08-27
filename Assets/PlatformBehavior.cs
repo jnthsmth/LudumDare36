@@ -29,7 +29,7 @@ public class PlatformBehavior : MonoBehaviour {
 		if(activated) {
 			move();
 		} else {
-			rig.velocity = new Vector3(0f, 0f);
+			rig.velocity = new Vector3(0f, 0f, 0f);
 		}
 	}
 

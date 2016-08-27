@@ -56,6 +56,8 @@ public class PlatformerControls : MonoBehaviour {
 	}
 
 	Vector3 applyFriction(Vector3 vec) {
+		if (!grounded)
+			return vec;
 		float mag = Mathf.Abs(vec.x) - friction * Time.deltaTime;
 		if (mag < 0f) mag = 0f;
 		if (vec.x < 0f)

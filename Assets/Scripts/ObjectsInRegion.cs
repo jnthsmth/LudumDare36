@@ -17,9 +17,9 @@ public class ObjectsInRegion : MonoBehaviour {
 		if (!objs.Contains (other.gameObject)) objs.Add (other.gameObject);
 	}
 
-	void OnTriggerExit(Collider other) {
-		while (objs.Contains (other.gameObject)) objs.Remove(other.gameObject);
-	}
+	//void OnTriggerExit(Collider other) {
+	//	while (objs.Contains (other.gameObject)) objs.Remove(other.gameObject);
+	//}
 
 	public List<GameObject> value {
 		get { return objs; }

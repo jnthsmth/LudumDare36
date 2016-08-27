@@ -9,6 +9,7 @@ public class NPCDialog {
 	public int[] subOptions = null;
 }
 
+[RequireComponent(typeof(ObjectsInRegion))]
 public class DialogTraverse : MonoBehaviour {
 	
 	public NPCDialog[] dialogs;
@@ -20,8 +21,8 @@ public class DialogTraverse : MonoBehaviour {
 			_selectionIdx %= currentDialog.subOptions.Length;
 			return _selectionIdx;
 		}
-
 		set {
+			if (value < 0) value = currentDialog.subOptions.Length - 1;
 			if (currentDialog.subOptions.Length == 0) return;
 			_selectionIdx = value % currentDialog.subOptions.Length;
 			setDisplayText ();
@@ -51,7 +52,7 @@ public class DialogTraverse : MonoBehaviour {
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.DownArrow)) selectionIdx++;
 		else if (Input.GetKeyDown (KeyCode.UpArrow)) selectionIdx--;
-		if (Input.GetKeyDown (KeyCode.E)) {
+		if (Input.GetKeyDown (KeyCode.E) && GetComponent<ObjectsInRegion>().value.Contains(GameManager.instance.player)) {
 			currentDialogIdx = currentDialog.subOptions [selectionIdx];
 			setDisplayText ();
 		}

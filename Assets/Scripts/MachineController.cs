@@ -23,6 +23,9 @@ public class MachineController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.E) && triggerList.value.Contains (GameManager.instance.player)) {
+			if (GameManager.instance.player.GetComponent<PlatformerControls> ().busy)
+				return;
+			GameManager.instance.player.GetComponent<PlatformerControls>().busy = true;
 			action.act ();
 		}
 	}

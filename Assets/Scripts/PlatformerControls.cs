@@ -13,6 +13,7 @@ public class PlatformerControls : MonoBehaviour {
 	public Vector3 jumpVector = new Vector3(0f, 16f, 0f);
 	private bool jump = false;
 	public float friction = .1f;
+	public bool busy = false;
 
 	void Awake() {
 		rig = GetComponent<Rigidbody>();

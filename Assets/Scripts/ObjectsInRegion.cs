@@ -9,6 +9,10 @@ public class ObjectsInRegion : MonoBehaviour {
 	List<GameObject> objs = new List<GameObject>();
 	public int n = 0;
 
+	void OnTriggerStay(Collider other) {
+		OnTriggerEnter(other);
+	}
+
 	void OnTriggerEnter(Collider other) {
 		if (!objs.Contains (other.gameObject)) objs.Add (other.gameObject);
 	}

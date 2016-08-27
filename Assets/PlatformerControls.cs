@@ -5,14 +5,15 @@ using System.Collections;
 public class PlatformerControls : MonoBehaviour {
 
 	public Vector2 controlVector = Vector2.zero;
-	public bool grounded = false;
-	public float jumpResetTime = 1f;
+	public bool grounded = true;
+	public float jumpResetTime = 0f;
 	public float jumpTimer = 0f;
 	public float horizontalControlSnap = 10f;
 	public Vector2 responsiveness = new Vector2 (10f, 0f);
 	public float speedScale = 4f;
 	private Rigidbody rig;
 	public Vector3 jumpVector = new Vector3(0f,7f,0f);
+	private bool jump = false;
 
 	void Awake() {
 		rig = GetComponent<Rigidbody> ();
@@ -25,14 +26,17 @@ public class PlatformerControls : MonoBehaviour {
 		controlVector = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 		if (Input.GetKeyDown (KeyCode.Space) && grounded && jumpTimer == 0f) {
 			jumpTimer = jumpResetTime;
-			rig.AddForce(jumpVector, ForceMode.Impulse);
+			jump = true;
 		}
 	}
 
 	void FixedUpdate() {
 		Vector3 vel = rig.velocity;
 		vel.x = Mathf.MoveTowards (vel.x, controlVector.x * speedScale, responsiveness.x);
+		if (jump) {
+			jump = false;
+			vel += jumpVector;
+		}
 		rig.velocity = vel;
-
 	}
 }

@@ -54,7 +54,7 @@ public class PlatformerControls : MonoBehaviour {
 	}
 
 	Vector3 applyControls(Vector3 vec) {
-		if(checkSide(controlVector.x))
+		if(checkSide(controlVector.x) && !grounded)
 			controlVector.x = 0f;
 		vec.x += controlVector.x * accel * Time.fixedDeltaTime;
 		if (vec.x > speed) vec.x = speed;

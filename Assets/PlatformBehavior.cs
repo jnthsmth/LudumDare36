@@ -22,19 +22,22 @@ public class PlatformBehavior : MonoBehaviour {
 		direction = (end - start);
 		distance = direction.magnitude;
 		direction.Normalize();
+		rig.isKinematic = true;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if(activated) {
+			rig.isKinematic = false;
 			move();
 		} else {
+			rig.isKinematic = true;
 			rig.velocity = new Vector3(0f, 0f, 0f);
 		}
 	}
 
 	void FixedUpdate() {
-		rig.position += rig.velocity * Time.deltaTime;
+		//rig.position += rig.velocity * Time.deltaTime;
 	}
 
 	private void move() {
@@ -46,6 +49,11 @@ public class PlatformBehavior : MonoBehaviour {
 		if(((rig.position-start).magnitude > distance && speed > 0) || ((rig.position-end).magnitude > distance && speed < 0)) {
 			speed *= -1f;
 		}
+		if(speed > 0)
+			direction = (end - rig.position);
+		else if(speed < 0)
+			direction = (rig.position - start);
+		direction.Normalize();
 	}
 
 }

@@ -5,7 +5,8 @@ public class EnemyController : MonoBehaviour {
 
 	public bool groundAhead = false;
 	public bool pathObstructed = false;
-	public float speed = 1f;
+	public float walkSpeed = 1f;
+	public float chaseSpeed = 3f;
 
 	void Update () {
 		Vector3 atGroundAhead = transform.TransformDirection (new Vector3 (1f, -0.6f, 0f));
@@ -21,7 +22,7 @@ public class EnemyController : MonoBehaviour {
 			angles.y += 180;
 			transform.rotation = Quaternion.Euler (angles);
 		} else {
-			transform.position += transform.right * Time.deltaTime *speed;
+			transform.position += transform.right * Time.deltaTime * walkSpeed;
 		}
 	}
 }

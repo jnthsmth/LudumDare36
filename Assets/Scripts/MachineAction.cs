@@ -7,6 +7,7 @@ public class MachineAction : MonoBehaviour {
 
 	public virtual void act() {
 		print ("TRIGGERED");
+		GameManager.instance.player.GetComponent<PlatformerControls> ().busy = false;
 	}
 
 	void Start() {

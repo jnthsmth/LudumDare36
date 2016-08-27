@@ -4,6 +4,7 @@ using System.Collections;
 [RequireComponent(typeof(Rigidbody))]
 public class SpringBehavior : MonoBehaviour {
 
+	public bool activated = true;
 	private Rigidbody rig;
 	public float force = 2f;
 
@@ -22,7 +23,9 @@ public class SpringBehavior : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		Rigidbody otherRig = other.gameObject.GetComponent<Rigidbody> ();
-		otherRig.velocity += transform.up * force;
+		if(activated) {
+			Rigidbody otherRig = other.gameObject.GetComponent<Rigidbody> ();
+			otherRig.velocity += transform.up * force;
+		}
 	}
 }

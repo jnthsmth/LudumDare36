@@ -31,10 +31,16 @@ public class PlatformerControls : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
+		checkGrounded ();
 		Vector3 vel = rig.velocity;
 		vel = applyControls(vel);
 		vel = applySpeedLimits(vel);
 		rig.velocity = vel;
+	}
+
+	void checkGrounded() {
+		Vector3 down = transform.TransformDirection(Vector3.down);
+		grounded = Physics.Raycast (transform.position, down, 1.3f);
 	}
 
 	Vector3 applyControls(Vector3 vec) {
@@ -47,8 +53,11 @@ public class PlatformerControls : MonoBehaviour {
 	}
 
 	Vector3 applySpeedLimits(Vector3 vec) {
-		vec.x = Mathf.Min (vec.x, speedLimits.x);
-		vec.y = Mathf.Min (vec.y, speedLimits.y);
+		if (vec.x > 0) vec.x = Mathf.Min (vec.x, speedLimits.x);
+		else vec.x = Mathf.Max (vec.x, -speedLimits.x);
+		if (vec.y > 0) vec.y = Mathf.Min (vec.y, speedLimits.y);
+		else vec.y = Mathf.Max (vec.y, -speedLimits.y);
 		return vec;
 	}
+
 }

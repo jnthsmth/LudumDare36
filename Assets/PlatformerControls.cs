@@ -39,7 +39,19 @@ public class PlatformerControls : MonoBehaviour {
 		grounded = Physics.Raycast (transform.position, down, 1.3f);
 	}
 
+	bool checkSide(float x) {
+		Vector3 left = transform.TransformDirection(Vector3.left);
+		Vector3 right = transform.TransformDirection(Vector3.right);
+		if(x > 0)
+			return Physics.Raycast (transform.position, right, 1.3f);
+		if(x < 0)
+			return Physics.Raycast (transform.position, left, 1.3f);
+		return false;
+	}
+
 	Vector3 applyControls(Vector3 vec) {
+		if(checkSide(controlVector.x))
+			controlVector.x = 0f;
 		vec.x += controlVector.x * accel * Time.fixedDeltaTime;
 		if (vec.x > speed) vec.x = speed;
 		if (jump) {

@@ -10,31 +10,50 @@ public class NPCDialog {
 }
 
 public class DialogTraverse : MonoBehaviour {
-	/*
+	
 	public NPCDialog[] dialogs;
-	private int _selectedIdx = 0;
-	private int selectedIdx {
-		get { return _selectedIdx; }
-		set { selectedIdx = value % root.subOptions.Length;
-			setDisplayText(); }
+
+	private int currentDialogIdx = 0;
+	private int selectionIdx {
+		get { 
+			if (currentDialog.subOptions.Length == 0) return 0;
+			_selectionIdx %= currentDialog.subOptions.Length;
+			return _selectionIdx;
+		}
+
+		set {
+			if (currentDialog.subOptions.Length == 0) return;
+			_selectionIdx = value % currentDialog.subOptions.Length;
+			setDisplayText ();
+		}
 	}
 
+	private NPCDialog currentDialog {
+		get { return dialogs [currentDialogIdx]; }
+	}
+
+	private int _selectionIdx = 0;
+
 	void setDisplayText () {
-		string displayText = selectedNode.message;
-		for (int i = 0; i < selectedNode.subOptions.Length; i++) {
-			displayText += "\n" + ((i == selectedIdx) ? ">" : "") + selectedNode.subOptions [i].optionDescription;
+		string displayText = currentDialog.message;
+		for (int i = 0; i < currentDialog.subOptions.Length; i++) {
+			int subOptionIdx = currentDialog.subOptions[i];
+			NPCDialog subOption = dialogs[subOptionIdx];
+			displayText += "\n" + ((i == selectionIdx) ? ">" : "") + subOption.optionDescription;
 		}
-		GetComponent<TextMesh> ().text = displayText;
+		GetComponent<TextMesh>().text = displayText;
 	}
 
 	void Start() {
 		setDisplayText();
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.DownArrow)) selectedIdx++;
-		else if (Input.GetKeyDown (KeyCode.UpArrow)) selectedIdx--;
+		if (Input.GetKeyDown (KeyCode.DownArrow)) selectionIdx++;
+		else if (Input.GetKeyDown (KeyCode.UpArrow)) selectionIdx--;
+		if (Input.GetKeyDown (KeyCode.E)) {
+			currentDialogIdx = currentDialog.subOptions [selectionIdx];
+			setDisplayText ();
+		}
 	}
-*/
 }

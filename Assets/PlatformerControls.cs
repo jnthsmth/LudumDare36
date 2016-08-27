@@ -6,13 +6,13 @@ public class PlatformerControls : MonoBehaviour {
 
 	public Vector2 controlVector = Vector2.zero;
 	public bool grounded = true;
-	public Vector2 responsiveness = new Vector2 (10f, 0f);
 	public Vector2 speedLimits = new Vector2(10f, 10f);
 	public float speed = 8f;
 	public float accel = 80f;
 	private Rigidbody rig;
 	public Vector3 jumpVector = new Vector3(0f, 8f, 0f);
 	private bool jump = false;
+	public float friction = .1f;
 
 	void Awake() {
 		rig = GetComponent<Rigidbody>();
@@ -28,6 +28,7 @@ public class PlatformerControls : MonoBehaviour {
 		Vector3 vel = rig.velocity;
 		vel = applyControls(vel);
 		vel = applySpeedLimits(vel);
+		vel = applyFriction (vel);
 		rig.velocity = vel;
 	}
 
@@ -51,6 +52,15 @@ public class PlatformerControls : MonoBehaviour {
 		else vec.x = Mathf.Max (vec.x, -speedLimits.x);
 		if (vec.y > 0) vec.y = Mathf.Min (vec.y, speedLimits.y);
 		else vec.y = Mathf.Max (vec.y, -speedLimits.y);
+		return vec;
+	}
+
+	Vector3 applyFriction(Vector3 vec) {
+		float mag = Mathf.Abs(vec.x) - friction * Time.deltaTime;
+		if (mag < 0f) mag = 0f;
+		if (vec.x < 0f)
+			mag = -mag;
+		vec.x = mag;
 		return vec;
 	}
 

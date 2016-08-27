@@ -8,20 +8,19 @@ public class PlatformerControls : MonoBehaviour {
 	public bool grounded = true;
 	public Vector2 responsiveness = new Vector2 (10f, 0f);
 	public Vector2 speedLimits = new Vector2(10f, 10f);
-	public float speedScale = 10f;
+	public float speed = 8f;
+	public float accel = 80f;
 	private Rigidbody rig;
-	public Vector3 jumpVector = new Vector3(0f,8f,0f);
+	public Vector3 jumpVector = new Vector3(0f, 8f, 0f);
 	private bool jump = false;
 
 	void Awake() {
-		rig = GetComponent<Rigidbody> ();
+		rig = GetComponent<Rigidbody>();
 	}
 
 	void Update () {
 		controlVector = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-		if (Input.GetKeyDown (KeyCode.Space) && grounded) {
-			jump = true;
-		}
+		if (Input.GetKeyDown (KeyCode.Space) && grounded) jump = true;
 	}
 
 	void FixedUpdate() {
@@ -38,7 +37,8 @@ public class PlatformerControls : MonoBehaviour {
 	}
 
 	Vector3 applyControls(Vector3 vec) {
-		vec.x = Mathf.MoveTowards(vec.x, controlVector.x * speedScale, 1f);
+		vec.x += controlVector.x * accel * Time.fixedDeltaTime;
+		if (vec.x > speed) vec.x = speed;
 		if (jump) {
 			jump = false;
 			vec += jumpVector;

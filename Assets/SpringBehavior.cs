@@ -6,7 +6,7 @@ public class SpringBehavior : MonoBehaviour {
 
 	public bool activated = true;
 	private Rigidbody rig;
-	public float force = 2f;
+	public float force = 50f;
 
 	void Awake() {
 		rig = GetComponent<Rigidbody> ();
@@ -14,12 +14,12 @@ public class SpringBehavior : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
+		
 	}
 
 	void OnTriggerEnter(Collider other) {

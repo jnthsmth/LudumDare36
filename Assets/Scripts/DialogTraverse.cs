@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public class NPCDialog {
 	public string optionDescription = "Talk";
 	public string message = "Hello World!";
-	public NPCDialog[] subOptions = null;
+	public int[] subOptions = null;
 }
 
 public class DialogTraverse : MonoBehaviour {

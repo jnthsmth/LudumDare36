@@ -26,8 +26,13 @@ public class PlatformerControls : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
+		bool grOld = grounded;
 		checkGrounded ();
 		Vector3 vel = rig.velocity;
+		if(!grOld && grounded && vel.y < 0) {
+			vel.y = 0;
+			rig.velocity = vel;
+		}
 		vel = applyControls(vel);
 		vel = applySpeedLimits(vel);
 		vel = applyFriction (vel);
@@ -36,7 +41,7 @@ public class PlatformerControls : MonoBehaviour {
 
 	void checkGrounded() {
 		Vector3 down = transform.TransformDirection(Vector3.down);
-		grounded = Physics.Raycast (transform.position, down, 1.3f);
+		grounded = Physics.Raycast (transform.position, down, 0.76f);
 	}
 
 	bool checkSide(float x) {

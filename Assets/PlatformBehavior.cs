@@ -47,4 +47,5 @@ public class PlatformBehavior : MonoBehaviour {
 			speed *= -1f;
 		}
 	}
+
 }

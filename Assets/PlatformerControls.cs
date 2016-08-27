@@ -10,7 +10,7 @@ public class PlatformerControls : MonoBehaviour {
 	public float speed = 8f;
 	public float accel = 80f;
 	private Rigidbody rig;
-	public Vector3 jumpVector = new Vector3(0f, 8f, 0f);
+	public Vector3 jumpVector = new Vector3(0f, 16f, 0f);
 	private bool jump = false;
 	public float friction = .1f;
 
@@ -21,6 +21,8 @@ public class PlatformerControls : MonoBehaviour {
 	void Update () {
 		controlVector = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 		if (Input.GetKeyDown (KeyCode.Space) && grounded) jump = true;
+		if(controlVector.x > 0) GetComponentInChildren<SpriteRenderer>().flipX = false;
+		if(controlVector.x < 0) GetComponentInChildren<SpriteRenderer>().flipX = true;
 	}
 
 	void FixedUpdate() {

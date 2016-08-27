@@ -43,9 +43,13 @@ public class PlatformerControls : MonoBehaviour {
 		Vector3 left = transform.TransformDirection(Vector3.left);
 		Vector3 right = transform.TransformDirection(Vector3.right);
 		if(x > 0)
-			return Physics.Raycast (transform.position, right, 1.3f);
+			return Physics.Raycast(transform.position, right, 1.3f) || 
+				Physics.Raycast(transform.position + new Vector3(0f,0.65f,0f), right, 1.3f) || 
+				Physics.Raycast(transform.position - new Vector3(0f,0.65f,0f), right, 1.3f);
 		if(x < 0)
-			return Physics.Raycast (transform.position, left, 1.3f);
+			return Physics.Raycast(transform.position, left, 1.3f) || 
+				Physics.Raycast(transform.position + new Vector3(0f,0.65f,0f), left, 1.3f) || 
+				Physics.Raycast(transform.position - new Vector3(0f,0.65f,0f), left, 1.3f);
 		return false;
 	}
 

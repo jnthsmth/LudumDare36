@@ -2,7 +2,16 @@
 using System.Collections;
 
 public class MachineAction : MonoBehaviour {
-	public void act() {
+
+	public GameObject obj;
+
+	public virtual void act() {
 		print ("TRIGGERED");
 	}
+
+	void Start() {
+		obj = transform.parent.FindChild ("Object").gameObject;
+	}
+
+
 }

@@ -7,7 +7,7 @@ public class DoorAction : MachineAction {
 	bool open = false;
 
 	public override void act() {
-		obj.transform.position += open ? -displacement : displacement;
+		obj.GetComponent<Rigidbody>().MovePosition(obj.transform.position + (open ? -displacement : displacement));
 		open = !open;
 	}
 }

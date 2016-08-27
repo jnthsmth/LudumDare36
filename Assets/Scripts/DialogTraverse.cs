@@ -10,22 +10,13 @@ public class NPCDialog {
 }
 
 public class DialogTraverse : MonoBehaviour {
-
-	public NPCDialog root;
-	private List<int> history = new List<int>();
+	/*
+	public NPCDialog[] dialogs;
 	private int _selectedIdx = 0;
 	private int selectedIdx {
 		get { return _selectedIdx; }
 		set { selectedIdx = value % root.subOptions.Length;
 			setDisplayText(); }
-	}
-
-	private NPCDialog selectedNode {
-		get { 
-			NPCDialog node = root;
-			foreach (int i in history) node = node.subOptions[i];
-			return node;
-		}
 	}
 
 	void setDisplayText () {
@@ -45,5 +36,5 @@ public class DialogTraverse : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.DownArrow)) selectedIdx++;
 		else if (Input.GetKeyDown (KeyCode.UpArrow)) selectedIdx--;
 	}
-
+*/
 }

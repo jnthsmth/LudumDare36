@@ -38,7 +38,7 @@ public class PlatformerControls : MonoBehaviour {
 	}
 
 	Vector3 applyControls(Vector3 vec) {
-		vec.x = controlVector.x * speedScale;
+		vec.x = Mathf.MoveTowards(vec.x, controlVector.x * speedScale, 1f);
 		if (jump) {
 			jump = false;
 			vec += jumpVector;

@@ -11,7 +11,7 @@ public class Interactable : MonoBehaviour {
 	}
 
 	void Update() {
-		if (Input.GetKeyDown (KeyCode.E) && oir.value.Contains (GameManager.instance.player)) Interact();
+		if (Input.GetKeyDown (KeyCode.E) && oir.value.Contains (GameManager.instance.player)) Interact ();
 	}
 
 	public virtual void Interact() {}

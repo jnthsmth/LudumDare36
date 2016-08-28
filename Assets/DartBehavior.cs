@@ -22,12 +22,11 @@ public class DartBehavior : MonoBehaviour {
 	}
 
 	void UpdateFixed() {
-		transform.rotation = Quaternion.Euler(rig.velocity); Quaternion.
+		transform.rotation = Quaternion.Euler(rig.velocity);
 		transform.FindChild("Sprite").transform.rotation = transform.rotation;
 	}
 
 	void OnTriggerEnter(Collider other) {
-
 		Destroy(this.gameObject);
 	}
 

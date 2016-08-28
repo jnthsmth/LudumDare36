@@ -8,6 +8,7 @@ public class BlowgunBehavior : MonoBehaviour {
 	private Rigidbody rig;
 	public bool manualFire = false;
 	public float firingSpeed = 20f;
+	public bool fullAuto = false;
 
 	void Awake() {
 		rig = GetComponent<Rigidbody> ();
@@ -20,6 +21,7 @@ public class BlowgunBehavior : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(fullAuto) manualFire = true;
 		if(manualFire && timeLeft <= 0f) {
 			manualFire = false;
 			Fire();

@@ -3,7 +3,7 @@ using System.Collections;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Bomb : MonoBehaviour {
-
+	/*
 	public bool active = true;
 	public float timer = 5f;
 	public float blastStrength = 50f;
@@ -46,5 +46,5 @@ public class Bomb : MonoBehaviour {
 		}
 		Destroy(this.gameObject);
 	}
-
+*/
 }

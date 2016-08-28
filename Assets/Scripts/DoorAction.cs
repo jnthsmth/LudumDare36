@@ -10,6 +10,5 @@ public class DoorAction : MachineAction {
 		obj.GetComponent<Rigidbody>().MovePosition(obj.transform.position + (open ? -displacement : displacement));
 		open = !open;
 
-		GameManager.instance.player.GetComponent<PlatformerControls> ().busy = false;
 	}
 }

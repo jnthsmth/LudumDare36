@@ -11,6 +11,9 @@ public class WeaponInteractable : Interactable {
 		} else {
 			transform.parent = GameManager.instance.player.transform;
 			transform.localPosition = Vector3.zero;
+			Quaternion rot = GameManager.instance.player.transform.rotation;
+			rot.y += 180;
+			transform.localRotation = rot;
 			transform.FindChild("HitBox").gameObject.SetActive(false);
 			GetComponent<Rigidbody> ().isKinematic = true;
 		}

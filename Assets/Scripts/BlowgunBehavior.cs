@@ -52,6 +52,8 @@ public class BlowgunBehavior : MonoBehaviour {
 		for(int i = 0; i < shots; ++i) {
 			int child = Random.Range(0, size);
 			Transform spawn = spawnPoints.ToArray()[child];
+			spawnPoints.RemoveAt(child);
+			--size;
 			GameObject dart = (GameObject) Instantiate(dartFab, spawn.position, transform.rotation);
 			Rigidbody dartRig = dart.GetComponent<Rigidbody>();
 			DartBehavior dartControl = dart.GetComponent<DartBehavior>();

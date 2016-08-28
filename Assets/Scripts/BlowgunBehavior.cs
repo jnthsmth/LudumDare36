@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class BlowgunBehavior : MonoBehaviour {
 
@@ -39,14 +40,30 @@ public class BlowgunBehavior : MonoBehaviour {
 		timeLeft = coolDown;
 		Vector3 pos = rig.position;
 
-		Transform dart = (Transform) Instantiate(transform.FindChild("Dart"), transform.FindChild("Spawn Location").position, transform.rotation);
-		Rigidbody dartRig = dart.GetComponent<Rigidbody>();
-		DartBehavior dartControl = dart.GetComponent<DartBehavior>();
+		int children = transform.childCount;
+		int size = 0;
+		List<Transform> spawnPoints = new List<Transform>();
+		for(int i = 0; i< children; ++i) {
+			if(transform.GetChild(i).name.Contains("Spawn Location")) {
+				spawnPoints.Add(transform.GetChild(i));
+				++size;
+			}
+		}
 
-		Vector3 vel = (dartRig.position - transform.position);
-		vel.Normalize();
-		vel *= firingSpeed;
-		dartControl.Activate(vel);
+		if(size == 0) return;
+
+		int shots = Random.Range(1, size);
+		for(int i = 0; i < shots; ++i) {
+			int child = Random.Range(0, size);
+			Transform spawn = spawnPoints.ToArray()[child];
+			Transform dart = (Transform) Instantiate(transform.FindChild("Dart"), spawn.position, transform.rotation);
+			Rigidbody dartRig = dart.GetComponent<Rigidbody>();
+			DartBehavior dartControl = dart.GetComponent<DartBehavior>();
+			Vector3 vel = Vector3.ProjectOnPlane(dartRig.position - transform.position, transform.up);
+			vel.Normalize();
+			vel *= firingSpeed;
+			dartControl.Activate(vel);
+		}
 	}
 
 }

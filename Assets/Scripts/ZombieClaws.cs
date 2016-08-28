@@ -5,10 +5,10 @@ public class ZombieClaws : MonoBehaviour {
 	public float pushFactor = 10f;
 	void OnTriggerEnter (Collider other) {
 		if (other.gameObject.GetComponent<CharacterMotion> () != null) {
-			Character player = other.gameObject.GetComponent<Character> ();
-			player.health -= 10;
+			Character ch = other.gameObject.GetComponent<Character>();
+			if (ch)	ch.health -= 10f;
 			Rigidbody rig = other.gameObject.GetComponent<Rigidbody> ();
-			rig.AddForce (pushFactor * (other.transform.position - transform.position), ForceMode.Impulse);
+			if (rig) rig.AddForce (pushFactor * (other.transform.position - transform.position).normalized, ForceMode.Impulse);
 		}
 	}
 }

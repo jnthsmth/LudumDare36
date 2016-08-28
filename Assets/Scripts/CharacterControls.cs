@@ -37,8 +37,7 @@ public class CharacterControls : MonoBehaviour {
 		
 	void checkProximity() {
 		groundedLastFrame = grounded;
-		Vector3 down = transform.TransformDirection(Vector3.down);
-		grounded = Physics.Raycast (transform.position, down, 1f);
+		grounded = Physics.Raycast (transform.position, Vector3.down, 1f);
 		rightBlocked = 
 			Physics.Raycast(transform.position, Vector3.right, 1.3f) || 
 			Physics.Raycast(transform.position + new Vector3(0f,0.65f,0f), Vector3.right, 1.3f) || 
@@ -47,6 +46,14 @@ public class CharacterControls : MonoBehaviour {
 			Physics.Raycast(transform.position, Vector3.left, 1.3f) || 
 			Physics.Raycast(transform.position + new Vector3(0f,0.65f,0f), Vector3.left, 1.3f) || 
 			Physics.Raycast(transform.position - new Vector3(0f,0.65f,0f), Vector3.left, 1.3f);
+
+		Debug.DrawRay(transform.position + new Vector3 (0f, 0.65f, 0f), Vector3.right*1.3f);
+		Debug.DrawRay(transform.position - new Vector3 (0f, 0.65f, 0f), Vector3.right*1.3f);
+		Debug.DrawRay(transform.position, Vector3.right*1.3f);
+		Debug.DrawRay(transform.position + new Vector3 (0f, 0.65f, 0f), Vector3.left*1.3f);
+		Debug.DrawRay(transform.position - new Vector3 (0f, 0.65f, 0f), Vector3.left*1.3f);
+		Debug.DrawRay(transform.position, Vector3.left*1.3f);
+		Debug.DrawRay(transform.position, Vector3.down);
 		frontBlocked = (facingLeft && leftBlocked) || (!facingLeft && rightBlocked);
 		backBlocked = (!facingLeft && leftBlocked) || (facingLeft && rightBlocked);
 	}

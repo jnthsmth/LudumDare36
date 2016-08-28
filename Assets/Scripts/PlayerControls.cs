@@ -7,8 +7,13 @@ public class PlayerControls : CharacterControls {
 		if(controlVector.magnitude != 0f) controlVector.Normalize();
 		if (Input.GetKeyDown (KeyCode.W) && grounded) jump = true;
 		if (Input.GetKeyDown (KeyCode.Space)) {
-			Transform weapon = transform.FindChild ("WeaponInteractable");
-			if (weapon) weapon.gameObject.GetComponent<BlowgunBehavior> ().Fire ();
+			Transform weapon = transform.FindChild ("BindableWeapon");
+			if (weapon) {
+				BlowgunBehavior[] guns = weapon.gameObject.GetComponentsInChildren<BlowgunBehavior>();
+				foreach(BlowgunBehavior gun in guns) {
+					gun.Fire();
+				}
+			}
 		}
 	}
 }

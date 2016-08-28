@@ -64,7 +64,7 @@ public class DartBehavior : MonoBehaviour {
 	}
 
 	public void Deactivate() {
-		if(active = true) wasActive = true;
+		if(active) wasActive = true;
 		active = false;
 		rig.velocity = velocity;
 	}

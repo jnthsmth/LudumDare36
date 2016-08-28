@@ -5,12 +5,7 @@ using System.Collections;
 public class SpringBehavior : MonoBehaviour {
 
 	public bool activated = true;
-	private Rigidbody rig;
 	public float force = 50f;
-
-	void Awake() {
-		rig = GetComponent<Rigidbody> ();
-	}
 
 	// Use this for initialization
 	void Start () {

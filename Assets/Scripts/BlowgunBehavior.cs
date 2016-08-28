@@ -4,11 +4,11 @@ using System.Collections;
 public class BlowgunBehavior : MonoBehaviour {
 
 	public float coolDown = 1f;
-	public float timeLeft = 0f;
+	private float timeLeft = 0f;
 	private Rigidbody rig;
 	public bool manualFire = false;
-	public float firingSpeed = 20f;
 	public bool fullAuto = false;
+	public float firingSpeed = 20f;
 
 	void Awake() {
 		rig = GetComponent<Rigidbody> ();
@@ -31,6 +31,7 @@ public class BlowgunBehavior : MonoBehaviour {
 	void FixedUpdate() {
 		if(timeLeft > 0f) timeLeft -= Time.deltaTime;
 		else if(timeLeft < 0f) timeLeft = 0f;
+		if(timeLeft > coolDown) timeLeft = coolDown;
 	}
 
 	void Fire() {

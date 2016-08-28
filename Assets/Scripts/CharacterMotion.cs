@@ -19,6 +19,10 @@ public class CharacterMotion : MonoBehaviour {
 		rig = GetComponent<Rigidbody> ();
 	}
 
+	void Update() {
+		rig.velocity = applySpeedLimits(rig.velocity);
+	}
+
 	void FixedUpdate() {
 		
 		Vector3 rot = transform.rotation.eulerAngles;

@@ -36,7 +36,7 @@ public class CharacterMotion : MonoBehaviour {
 	Vector3 applyControls(Vector3 vec) {
 		if(!((controls.leftBlocked && controls.controlVector.x < 0f || controls.rightBlocked && controls.controlVector.x > 0f) && !controls.grounded))
 			vec.x += controls.controlVector.x * accel * Time.fixedDeltaTime;
-		if (vec.x > speed) vec.x = speed;
+		if (Mathf.Abs(vec.x) > speed) vec.x = vec.x > 0 ? speed:-speed;
 		if (controls.jump) {
 			controls.jump = false;
 			vec.y += jumpForce;

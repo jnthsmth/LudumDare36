@@ -6,14 +6,10 @@ public class BlowgunBehavior : MonoBehaviour {
 
 	public float coolDown = 1f;
 	private float timeLeft = 0f;
-	private Rigidbody rig;
 	public bool manualFire = false;
 	public bool fullAuto = false;
 	public float firingSpeed = 20f;
-
-	void Awake() {
-		rig = GetComponent<Rigidbody> ();
-	}
+	public Transform dartFab = null;
 
 	// Use this for initialization
 	void Start () {
@@ -38,7 +34,7 @@ public class BlowgunBehavior : MonoBehaviour {
 	public void Fire() {
 		if(timeLeft > 0f) return;
 		timeLeft = coolDown;
-		Vector3 pos = rig.position;
+		if(dartFab == null) return;
 
 		int children = transform.childCount;
 		int size = 0;
@@ -56,7 +52,7 @@ public class BlowgunBehavior : MonoBehaviour {
 		for(int i = 0; i < shots; ++i) {
 			int child = Random.Range(0, size);
 			Transform spawn = spawnPoints.ToArray()[child];
-			Transform dart = (Transform) Instantiate(transform.FindChild("Dart"), spawn.position, transform.rotation);
+			Transform dart = (Transform) Instantiate(dartFab, spawn.position, transform.rotation);
 			Rigidbody dartRig = dart.GetComponent<Rigidbody>();
 			DartBehavior dartControl = dart.GetComponent<DartBehavior>();
 			Vector3 vel = Vector3.ProjectOnPlane(dartRig.position - transform.position, transform.up);

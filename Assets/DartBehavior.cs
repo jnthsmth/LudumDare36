@@ -17,13 +17,7 @@ public class DartBehavior : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		transform.rotation = Quaternion.Euler(rig.velocity);
-		transform.FindChild("Sprite").transform.rotation = transform.rotation;
-	}
-
-	void UpdateFixed() {
-		transform.rotation = Quaternion.Euler(rig.velocity);
-		transform.FindChild("Sprite").transform.rotation = transform.rotation;
+		transform.rotation = Quaternion.LookRotation(rig.velocity);
 	}
 
 	void OnTriggerEnter(Collider other) {

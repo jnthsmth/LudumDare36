@@ -1,16 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(ObjectsInRegion))]
 [RequireComponent(typeof(Rigidbody))]
 public class EnemyControls : CharacterControls {
 
-	public ObjectsInRegion visionCone;
-	public bool grounded = false;
-	float baseSpeed;
-
-	void Awake () {
-		visionCone = GetComponent<ObjectsInRegion> ();
+	public void Start() {
+		controlVector.x = -1f;
 	}
 
 	public override void updateControls() {

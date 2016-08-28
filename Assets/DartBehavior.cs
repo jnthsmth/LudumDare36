@@ -18,7 +18,7 @@ public class DartBehavior : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		transform.rotation = Quaternion.LookRotation(rig.velocity);
+		transform.rotation = Quaternion.AngleAxis(Vector3.Angle(Vector3.left, rig.velocity), Vector3.forward);
 	}
 
 	void OnTriggerEnter(Collider other) {

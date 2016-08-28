@@ -34,7 +34,7 @@ public class BlowgunBehavior : MonoBehaviour {
 		if(timeLeft > coolDown) timeLeft = coolDown;
 	}
 
-	void Fire() {
+	public void Fire() {
 		if(timeLeft > 0f) return;
 		timeLeft = coolDown;
 		Vector3 pos = rig.position;

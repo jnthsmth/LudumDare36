@@ -39,6 +39,7 @@ public class DartBehavior : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 		if(active) {
+			if(other.isTrigger) return;
 			Character target = other.GetComponentInParent<Character>();
 			if(target != null) target.health -= damage;
 			Destroy(this.gameObject);

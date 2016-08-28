@@ -5,6 +5,7 @@ using System.Collections;
 public class DartBehavior : MonoBehaviour {
 
 	private Rigidbody rig;
+	public float damage = 10f;
 
 	void Awake() {
 		rig = GetComponent<Rigidbody> ();
@@ -21,6 +22,8 @@ public class DartBehavior : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
+		Character target = other.GetComponentInParent<Character>();
+		if(target != null) target.health -= damage;
 		Destroy(this.gameObject);
 	}
 

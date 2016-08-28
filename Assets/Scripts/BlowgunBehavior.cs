@@ -9,7 +9,7 @@ public class BlowgunBehavior : MonoBehaviour {
 	public bool manualFire = false;
 	public bool fullAuto = false;
 	public float firingSpeed = 20f;
-	public Transform dartFab = null;
+	public GameObject dartFab = null;
 
 	// Use this for initialization
 	void Start () {
@@ -52,7 +52,7 @@ public class BlowgunBehavior : MonoBehaviour {
 		for(int i = 0; i < shots; ++i) {
 			int child = Random.Range(0, size);
 			Transform spawn = spawnPoints.ToArray()[child];
-			Transform dart = (Transform) Instantiate(dartFab, spawn.position, transform.rotation);
+			GameObject dart = (GameObject) Instantiate(dartFab, spawn.position, transform.rotation);
 			Rigidbody dartRig = dart.GetComponent<Rigidbody>();
 			DartBehavior dartControl = dart.GetComponent<DartBehavior>();
 			Vector3 vel = Vector3.ProjectOnPlane(dartRig.position - transform.position, transform.up);

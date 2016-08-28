@@ -4,6 +4,7 @@ using System.Collections;
 public class CameraController : MonoBehaviour {
 
 	private Rigidbody rig;
+	private Vector3 velocity = Vector3.zero;
 
 	void Awake() {
 		rig = GetComponent<Rigidbody> ();
@@ -16,6 +17,7 @@ public class CameraController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		
 	}
 
 	void FixedUpdate() {
